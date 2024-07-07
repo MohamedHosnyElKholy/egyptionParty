@@ -39,8 +39,6 @@ const textarea = $('textarea');
 
 textarea.keydown((e) => {
     const textLength = textarea.val().length;
-
-    // استخدم keydown لضبط التغييرات قبل التحديث
     if (e.key === 'Backspace' && textLength > 0) {
         convert++;
     } else if (convert > 0 && e.key !== 'Backspace') {
