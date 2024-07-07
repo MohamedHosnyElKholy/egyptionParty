@@ -35,23 +35,25 @@ let x = setInterval(() => {
 // Low Number From Write In Text Area
 let num = document.querySelector('.character span');
 let convert = Number(num.textContent);
-$('textarea').keydown((e) => {
-    const textLength = $('textarea').val().length;
-    console.log(textLength);
-    if (textLength >= 0) {
-        if (e.key === 'Backspace') {
-            convert++
-        } else if (convert > 0) {
-            convert--;
-        }
+const textarea = $('textarea');
+
+textarea.keydown((e) => {
+    const textLength = textarea.val().length;
+
+    // استخدم keydown لضبط التغييرات قبل التحديث
+    if (e.key === 'Backspace' && textLength > 0) {
+        convert++;
+    } else if (convert > 0 && e.key !== 'Backspace') {
+        convert--;
     }
-    if (convert == 0) {
-        num.innerHTML = `your available character finished`;
+
+    if (convert <= 0) {
+        num.innerHTML = `your available characters are finished`;
     } else {
         num.innerHTML = convert;
     }
+});
 
-})
 // 
 $('.left-menue ul li a').click((e) => {
     let x = $(e.target).attr('href');
